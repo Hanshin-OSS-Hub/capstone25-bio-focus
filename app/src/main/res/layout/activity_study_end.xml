@@ -1,0 +1,47 @@
+<!-- res/layout/activity_study_end.xml --><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    tools:context="com.biofocus.ui.study.StudyEndActivity">
+
+    <ProgressBar
+        android:id="@+id/completion_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="50"
+        android:max="100" />
+
+    <TextView
+        android:id="@+id/completion_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="50% 완료."
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/study_duration_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="00:00:00"
+        android:textSize="48sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="확인"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:textSize="24sp" />
+
+</LinearLayout>

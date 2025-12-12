@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 인터넷 (기존) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Health Connect 권한 선언 -->
+    <uses-permission android:name="android.permission.health.READ_HEART_RATE" />
+    <uses-permission android:name="android.permission.health.READ_EXERCISE" />
+
+    <!-- Health Connect 앱 패키지 조회 -->
+    <queries>
+        <package android:name="com.google.android.apps.healthdata" />
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Concentration">
+
+        <!-- ⭐ 실제 런처: 메인 화면 -->
+        <activity
+            android:name="com.biofocus.ui.main.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 공부 화면들 -->
+        <activity android:name="com.biofocus.ui.study.StudyActivity" />
+        <activity android:name="com.biofocus.ui.study.StudyEndActivity" />
+        <activity android:name="com.biofocus.ui.profile.ProfileActivity" />
+
+        <!-- Health Connect 권한 설명 / 프라이버시 Activity -->
+        <!-- 실제 클래스: com.biofocus.concentration.data.health.PermissionsRationaleActivity -->
+        <activity
+            android:name="com.biofocus.data.health.PermissionsRationaleActivity"
+            android:exported="true">
+            <!-- Health Connect에서 “권한 설명 보기” 눌렀을 때 호출 -->
+            <intent-filter>
+                <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+            </intent-filter>
+        </activity>
+
+        <!-- Android 14+ 권한 사용 내역 화면 alias -->
+        <activity-alias
+            android:name="ViewPermissionUsageActivity"
+            android:exported="true"
+            android:targetActivity="com.biofocus.data.health.PermissionsRationaleActivity"
+            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE" />
+                <category android:name="android.intent.category.HEALTH_PERMISSIONS" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- (선택) 디버그용 Health Connect 테스트 화면 - 필요하면 남기고, 아니라면 지워도 됨 -->
+        <activity
+            android:name="com.biofocus.ui.healthdebug.HealthConnectDebugActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

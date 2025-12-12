@@ -1,0 +1,89 @@
+<!-- res/layout/activity_main.xml --><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    tools:context="com.biofocus.ui.main.MainActivity">
+
+    <ImageView
+        android:id="@+id/profile_image_main"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start"
+        android:src="@drawable/ic_launcher_foreground"
+        android:background="@android:color/darker_gray"
+        android:contentDescription="프로필 이미지" />
+
+    <TextView
+        android:id="@+id/date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="YYYY.MM.DD (W)"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="목표 공부 시간"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/edit_text_hour"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:hint="시간"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시간"
+            android:textSize="20sp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_minute"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:hint="분"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="분"
+            android:textSize="20sp"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="시작"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:textSize="24sp" />
+
+</LinearLayout>
