@@ -1,4 +1,4 @@
-com.biofocus
+com.biofocus/br
 ├─ data 
      UI와 분리된 순수 데이터 처리 영역
 │  ├─ dummy
