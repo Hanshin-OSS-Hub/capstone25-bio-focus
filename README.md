@@ -1,4 +1,5 @@
-```com.biofocus
+```
+com.biofocus
 ├─ data
 │ ├─ dummy
 │ │ └─ DummyDataProvider.kt
@@ -67,4 +68,4 @@
 │ - 프로필 / 설정 화면 UI
 │
 └─ activity_health_debug.xml
-- Health Connect 테스트 UI```
+- Health Connect 테스트 UI
