@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tvYesterdayDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전날 학습 결과"
+        android:textColor="@color/ind_100"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvYesterdayEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="전날 학습 기록이 없어요"
+        android:textColor="@color/ind_200"
+        android:textSize="13sp"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvYesterdayDate"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvYesterday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvYesterdayDate"/>
+
+    <Button
+        android:id="@+id/btnYesterdayClose"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="닫기"
+        android:textColor="@color/ind_200"
+        android:backgroundTint="@color/ind_800"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvYesterday"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

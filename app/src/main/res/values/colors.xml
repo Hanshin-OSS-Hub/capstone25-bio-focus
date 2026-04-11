@@ -1,0 +1,24 @@
+<!-- res/values/colors.xml -->
+<resources>
+    <!-- 인디고 팔레트 -->
+    <color name="ind_900">#1A1442</color>  <!-- 화면 배경 -->
+    <color name="ind_800">#26215C</color>  <!-- 카드 배경 -->
+    <color name="ind_700">#3C3489</color>
+    <color name="ind_500">#534AB7</color>  <!-- 활성 탭, 팝업카드 -->
+    <color name="ind_400">#7F77DD</color>  <!-- 포인트 버튼, 라디오 -->
+    <color name="ind_200">#AFA9EC</color>  <!-- 보조 텍스트 -->
+    <color name="ind_100">#CECBF6</color>  <!-- 힌트 텍스트 -->
+    <color name="ind_050">#EEEDFE</color>  <!-- 배경 서피스 -->
+
+    <!-- 과목별 구분 색 (전날 데이터용) -->
+    <color name="subj_math">#7F77DD</color>
+    <color name="subj_korean">#1D9E75</color>
+    <color name="subj_english">#EF9F27</color>
+    <color name="subj_science">#D85A30</color>
+    <color name="subj_history">#D4537E</color>
+
+    <!-- 기능 색 -->
+    <color name="btn_done">#1D9E75</color>   <!-- 완료 버튼 -->
+    <color name="btn_end">#3C3489</color>    <!-- 종료 버튼 -->
+    <color name="white">#FFFFFF</color>
+</resources>
