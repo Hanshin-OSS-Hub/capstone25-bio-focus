@@ -1,14 +1,18 @@
 package com.cookandroid.capstone2.ui
 
 import android.app.Dialog
-import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.cookandroid.capstone2.databinding.ActivityMainBinding
+import data.StudyDatabase
 import com.cookandroid.capstone2.databinding.DialogYesterdayBinding
+import health.HealthConnectManager
 import com.cookandroid.capstone2.viewmodel.PlannerViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDate
 
 class YesterdayDialog(
@@ -33,13 +37,14 @@ class YesterdayDialog(
         binding.rvYesterday.layoutManager = LinearLayoutManager(activity)
         binding.rvYesterday.adapter = adapter
 
+        activity.lifecycleScope.launch {
+            syncYesterdayHrv(yesterday)
+        }
+
         viewModel.getPlansByDate(yesterday).observe(activity) { plans ->
             adapter.submitList(plans)
-            if (plans.isEmpty()) {
-                binding.tvYesterdayEmpty.visibility = android.view.View.VISIBLE
-            } else {
-                binding.tvYesterdayEmpty.visibility = android.view.View.GONE
-            }
+            binding.tvYesterdayEmpty.visibility =
+                if (plans.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
         }
 
         binding.btnYesterdayClose.setOnClickListener {
@@ -47,5 +52,40 @@ class YesterdayDialog(
         }
 
         dialog.show()
+    }
+
+    private suspend fun syncYesterdayHrv(date: String) {
+        val manager = HealthConnectManager(activity)
+
+        if (!manager.isAvailable()) {
+            Log.d("HealthConnect", "Health Connect 사용 불가")
+            return
+        }
+
+        if (!manager.hasAllPermissions()) {
+            Log.d("HealthConnect", "HRV 읽기 권한 없음")
+            return
+        }
+
+        withContext(Dispatchers.IO) {
+            val dao = StudyDatabase.getDatabase(activity.applicationContext).studyPlanDao()
+            val plans = dao.getPlansByDateOnce(date)
+
+            plans.forEach { plan ->
+                val startMillis = plan.sessionStartMillis
+                val endMillis = plan.sessionEndMillis
+
+                if (startMillis == null || endMillis == null) return@forEach
+
+                val averageHrv = manager.readAverageHrvRmssd(startMillis, endMillis)
+
+                dao.updatePlan(
+                    plan.copy(
+                        hrvRmssd = averageHrv,
+                        hrvSyncedAt = System.currentTimeMillis()
+                    )
+                )
+            }
+        }
     }
 }

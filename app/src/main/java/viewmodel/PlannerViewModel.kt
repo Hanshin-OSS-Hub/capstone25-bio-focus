@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.cookandroid.capstone2.data.StudyDatabase
-import com.cookandroid.capstone2.data.StudyPlan
+import data.StudyDatabase
+import data.StudyPlan
 import kotlinx.coroutines.launch
 
 class PlannerViewModel(application: Application) : AndroidViewModel(application) {

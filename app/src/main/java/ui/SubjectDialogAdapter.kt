@@ -3,7 +3,7 @@ package com.cookandroid.capstone2.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.cookandroid.capstone2.data.StudyPlan
+import data.StudyPlan
 import com.cookandroid.capstone2.databinding.ItemSubjectBinding
 
 class SubjectDialogAdapter(

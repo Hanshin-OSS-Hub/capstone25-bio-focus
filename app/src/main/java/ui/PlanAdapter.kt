@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.cookandroid.capstone2.data.StudyPlan
+import data.StudyPlan
 import com.cookandroid.capstone2.databinding.ItemPlanBinding
 
 class PlanAdapter(
@@ -20,7 +20,7 @@ class PlanAdapter(
         fun bind(plan: StudyPlan) {
             binding.tvSubject.text = "[${plan.subject}]"
             binding.tvTitle.text = plan.title
-            binding.tvTime.text = "${plan.startTime} ~ ${plan.endTime}"
+            binding.tvTime.text = "목표 ${plan.targetMinutes}분"
 
             if (plan.isCompleted) {
                 binding.tvTitle.paintFlags =
@@ -38,7 +38,9 @@ class PlanAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanViewHolder {
         val binding = ItemPlanBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
         return PlanViewHolder(binding)
     }

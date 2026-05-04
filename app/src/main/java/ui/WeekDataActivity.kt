@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cookandroid.capstone2.databinding.ActivityWeekDataBinding
 import com.cookandroid.capstone2.viewmodel.PlannerViewModel
+import kotlin.math.roundToInt
 
 class WeekDataActivity : AppCompatActivity() {
 
@@ -24,19 +25,37 @@ class WeekDataActivity : AppCompatActivity() {
         binding.rvWeekData.adapter = adapter
 
         viewModel.allPlans.observe(this) { plans ->
-            val today = java.time.LocalDate.now().toString()
-
             val weekData = plans
-                .filter { it.date != today }
                 .groupBy { it.date }
                 .entries
                 .sortedByDescending { it.key }
                 .take(7)
                 .map { (date, dayPlans) ->
-                    val total = dayPlans.size
-                    val completed = dayPlans.count { it.isCompleted }
-                    val percent = if (total > 0) (completed * 100 / total) else 0
-                    WeekDataItem(date, total, percent)
+                    val targetMinutes = dayPlans.sumOf { it.targetMinutes }
+
+                    val studiedMinutes = dayPlans.sumOf { plan ->
+                        val start = plan.sessionStartMillis
+                        val end = plan.sessionEndMillis
+
+                        if (start != null && end != null && end > start) {
+                            ((end - start) / 1000 / 60).toInt()
+                        } else {
+                            0
+                        }
+                    }
+
+                    val percent = if (targetMinutes > 0) {
+                        ((studiedMinutes.toDouble() / targetMinutes.toDouble()) * 100).roundToInt()
+                    } else {
+                        0
+                    }
+
+                    WeekDataItem(
+                        date = date,
+                        studiedMinutes = studiedMinutes,
+                        targetMinutes = targetMinutes,
+                        percent = percent
+                    )
                 }
 
             adapter.submitList(weekData)

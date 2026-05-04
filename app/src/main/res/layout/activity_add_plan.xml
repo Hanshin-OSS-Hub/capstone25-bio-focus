@@ -49,43 +49,18 @@
             app:layout_constraintTop_toBottomOf="@id/etSubject"/>
 
         <EditText
-            android:id="@+id/etDate"
+            android:id="@+id/etTargetMinutes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="날짜 (비우면 오늘, 예: 2025-04-03)"
+            android:hint="목표시간 분 단위 (예: 60)"
+            android:inputType="number"
             android:textColor="@color/white"
             android:textColorHint="@color/ind_200"
             android:backgroundTint="@color/ind_400"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etTitle"/>
-
-        <EditText
-            android:id="@+id/etStartTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="시작 시간 (예: 09:00)"
-            android:textColor="@color/white"
-            android:textColorHint="@color/ind_200"
-            android:backgroundTint="@color/ind_400"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etDate"/>
-
-        <EditText
-            android:id="@+id/etEndTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="종료 시간 (예: 11:00)"
-            android:textColor="@color/white"
-            android:textColorHint="@color/ind_200"
-            android:backgroundTint="@color/ind_400"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etStartTime"/>
 
         <Button
             android:id="@+id/btnSave"
@@ -97,7 +72,7 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@id/btnCancel"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etEndTime"/>
+            app:layout_constraintTop_toBottomOf="@id/etTargetMinutes"/>
 
         <Button
             android:id="@+id/btnCancel"
@@ -110,7 +85,7 @@
             android:textColor="@color/ind_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/btnSave"
-            app:layout_constraintTop_toBottomOf="@id/etEndTime"/>
+            app:layout_constraintTop_toBottomOf="@id/etTargetMinutes"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

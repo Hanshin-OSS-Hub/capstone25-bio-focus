@@ -15,14 +15,16 @@ class WeekDataAdapter :
 
         fun bind(item: WeekDataItem) {
             binding.tvDate.text = item.date
-            binding.tvCount.text = "${item.count}개"
+            binding.tvCount.text = "${item.studiedMinutes}분 / ${item.targetMinutes}분"
             binding.tvPercent.text = "${item.percent}%"
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemWeekDataBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
         return ViewHolder(binding)
     }
